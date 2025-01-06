@@ -39,7 +39,7 @@ const MainLayout = () => {
                     console.log(collapsed, type);
                 }}
             >
-                <div style={{color: "white", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "20px", marginBottom: "16px"}}>
+                <div style={{color: "white", display: "flex", alignItems: "center", justifyContent: "center", height: "4rem"}}>
                     <h1>PH UNIVERSITY</h1>
                 </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
