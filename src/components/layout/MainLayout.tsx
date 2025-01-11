@@ -2,7 +2,7 @@ import { Layout, Menu, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items: MenuProps['items'] = [
+const sidebarItems: MenuProps['items'] = [
     {
         key: 'Dashboard',
         label: 'Dashboard'
@@ -43,7 +43,7 @@ const MainLayout = () => {
                 <div style={{color: "white", display: "flex", alignItems: "center", justifyContent: "center", height: "4rem"}}>
                     <h1>PH UNIVERSITY</h1>
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={sidebarItems} />
             </Sider>
             <Layout>
                 <Header style={{ padding: 0}} />
