@@ -3,6 +3,8 @@ import Sider from "antd/es/layout/Sider";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { adminPaths } from "../../routes/admin.routes";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
+import { facultyPaths } from "../../routes/faculty.routes";
+import { studentPaths } from "../../routes/student.routes";
 
 const userRole = {
     ADMIN: 'admin',
@@ -19,10 +21,10 @@ const Sidebar = () => {
             sidebarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
             break;
         case userRole.FACULTY:
-            sidebarItems = sidebarItemsGenerator(adminPaths, userRole.FACULTY);
+            sidebarItems = sidebarItemsGenerator(facultyPaths, userRole.FACULTY);
             break;
         case userRole.STUDENT:
-            sidebarItems = sidebarItemsGenerator(adminPaths, userRole.STUDENT);
+            sidebarItems = sidebarItemsGenerator(studentPaths, userRole.STUDENT);
             break;
         default:
             break;
