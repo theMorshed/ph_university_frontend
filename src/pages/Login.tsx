@@ -1,11 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
+import { useLoginMutation } from "../redux/features/auth/authApi";
 
 const Login = () => {
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register } = useForm({
+        defaultValues: {
+            id: 'A-0001',
+            password: 'iamadmin'
+        }
+    });
+
+    const [login, { data, error }] = useLoginMutation();
+    console.log(data, error);
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        const userInfo = {
+            id: data.id,
+            password: data.password
+        }
+        login(userInfo)
     }
 
     return (
