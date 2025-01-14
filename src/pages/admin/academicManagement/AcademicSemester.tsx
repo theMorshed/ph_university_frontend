@@ -2,7 +2,9 @@ import { useGetAllSemestersQuery } from "../../../redux/features/academicSemeste
 
 const AcademicSemester = () => {
     const data = useGetAllSemestersQuery(undefined);
-    console.log(data.data);
+    if (data) {
+        console.log(data?.data);
+    }
     return (
         <div>
             This is academic sementer manager page.
