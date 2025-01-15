@@ -1,41 +1,42 @@
-import { TQueryParam, TResponseRedux } from "../../../types";
-import { TAcademicSemester } from "../../../types/academicSemester.types";
-import { baseApi } from "../../api/baseApi";
+import { TQueryParam, TResponseRedux } from '../../../types';
+import { TAcademicSemester } from '../../../types/academicSemester.types';
+import { baseApi } from '../../api/baseApi';
 
 const academicManagementApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllSemesters: builder.query({
             query: (args) => {
+                console.log(args);
                 const params = new URLSearchParams();
+
                 if (args) {
                     args.forEach((item: TQueryParam) => {
                         params.append(item.name, item.value as string);
                     });
                 }
 
-                console.log(args);
-
                 return {
                     url: '/academic-semesters',
                     method: 'GET',
-                    params: params
-                }
+                    params: params,
+                };
             },
-            transformResponse: (response: TResponseRedux<TAcademicSemester>) => {
+            transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
                 return {
                     data: response.data,
-                    meta: response.meta
-                }
-            }
+                    meta: response.meta,
+                };
+            },
         }),
         addAcademicSemester: builder.mutation({
             query: (data) => ({
                 url: '/academic-semesters/create-academic-semester',
                 method: 'POST',
-                body: data
-            })
+                body: data,
+            }),
         }),
-    })
-})
+    }),
+});
 
-export const { useGetAllSemestersQuery, useAddAcademicSemesterMutation } = academicManagementApi;
+export const { useGetAllSemestersQuery, useAddAcademicSemesterMutation } =
+  academicManagementApi;
