@@ -10,7 +10,7 @@ import { academicSemesterSchema } from "../../../schemas/academicSemester.schema
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagementApi";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global.types";
-import { TAcademicSemester } from "../../../types/academicSemester.types";
+import { TAcademicSemester } from "../../../types/academicManagement.types";
 
 const CreateAcademicSemester = () => {
     const [addAcademicSemester] = useAddAcademicSemesterMutation();
