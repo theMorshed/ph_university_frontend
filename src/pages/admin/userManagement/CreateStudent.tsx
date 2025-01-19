@@ -5,7 +5,8 @@ import { Button, Col, Divider, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import { bloodGroupOptions, genderOptions } from "../../../constants/global";
 import PHDatePicker from "../../../components/form/PHDatePicker";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagementApi";
+import { useGetAcademicDepartmentsQuery, useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagementApi";
+import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
 
 const stduentDefaultData = {
     "name": {
@@ -35,15 +36,24 @@ const stduentDefaultData = {
         "address": "789 Oak Street, Springfield",
         "contactNo": "9988776655"
     },
-    // "admissionSemester": "67739bb370b22552c1a613bc",
-    // "academicDepartment": "67739c8670b22552c1a613c5"
+    "admissionSemester": "67739bb370b22552c1a613bc",
+    "academicDepartment": "67739c8670b22552c1a613c5"
 }
 
 const CreateStudent = () => {
+    const [addStudent, {data, error}] = useAddStudentMutation();
+    console.log(data, error);
+
     const {data: sData, isLoading: sIsloading} = useGetAllSemestersQuery(undefined);
     const semesterOptions = sData?.data?.map(item => ({
         value: item._id,
         label: `${item.name} ${item.year}`
+    }))
+
+    const {data: dData, isLoading: dIsloading} = useGetAcademicDepartmentsQuery(undefined);
+    const departmentOptions = dData?.data?.map(item => ({
+        value: item._id,
+        label: item.name
     }))
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         const studentData = {
@@ -51,8 +61,9 @@ const CreateStudent = () => {
             student: data
         }
         console.log(studentData);
-        // const formData = new FormData();
-        // formData.append('data', JSON.stringify(studentData));
+        const formData = new FormData();
+        formData.append('data', JSON.stringify(studentData));
+        addStudent(formData);
         // console.log(Object.fromEntries(formData));
     }
     return (
@@ -139,9 +150,9 @@ const CreateStudent = () => {
                         <Col span={24} md={{span: 12}} lg={{span: 8}}>
                             <PHSelect options={semesterOptions} disabled={sIsloading} name="admissionSemester" label="Admission Semester" />
                         </Col>
-                        {/* <Col span={24} md={{span: 12}} lg={{span: 8}}>
-                            <PHSelect options={} disabled={dIsloading} name="departmentOptions" label="Admission Department" />
-                        </Col> */}
+                        <Col span={24} md={{span: 12}} lg={{span: 8}}>
+                            <PHSelect options={departmentOptions} disabled={dIsloading} name="departmentOptions" label="Admission Department" />
+                        </Col>
                     </Row>
                     <Button htmlType="submit">submit</Button>
                 </PHForm>
