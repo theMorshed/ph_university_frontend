@@ -41,8 +41,7 @@ const stduentDefaultData = {
 }
 
 const CreateStudent = () => {
-    const [addStudent, {data, error}] = useAddStudentMutation();
-    console.log(data, error);
+    const [addStudent] = useAddStudentMutation();
 
     const {data: sData, isLoading: sIsloading} = useGetAllSemestersQuery(undefined);
     const semesterOptions = sData?.data?.map(item => ({

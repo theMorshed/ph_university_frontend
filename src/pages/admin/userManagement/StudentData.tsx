@@ -16,8 +16,6 @@ const StudentData = () => {
         ...params
     ])
 
-    console.log(studentData);
-
     const metaData = studentData?.meta;
     const tableData = studentData?.data?.map(({_id, fullName, id, email, contactNo}) => ({
         key: _id,
