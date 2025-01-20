@@ -5,9 +5,13 @@ import CreateAcademicDepartment from "../pages/admin/academicManagement/CreateAc
 import CreateAcademicFaculty from "../pages/admin/academicManagement/CreateAcademicFaculty";
 import CreateAcademicSemester from "../pages/admin/academicManagement/CreateAcademicSemester";
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import AdminData from "../pages/admin/userManagement/AdminData";
+import AdminDetails from "../pages/admin/userManagement/AdminDetails";
 import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
 import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
 import CreateStudent from "../pages/admin/userManagement/CreateStudent";
+import FacultyData from "../pages/admin/userManagement/FacultyData";
+import FacultyDetails from "../pages/admin/userManagement/FacultyDetails";
 import StudentData from "../pages/admin/userManagement/StudentData";
 import StudentDetails from "../pages/admin/userManagement/StudentDetails";
 
@@ -75,9 +79,27 @@ export const adminPaths = [
                 element: <CreateAdmin />
             },
             {
+                name: 'All Admins',
+                path: 'admin-data',
+                element: <AdminData />
+            },
+            {
+                path: 'admin-data/:adminId',
+                element: <AdminDetails />
+            },
+            {
                 name: 'Create Faculty',
                 path: 'create-faculty',
                 element: <CreateFaculty />
+            },
+            {
+                name: 'All Faculties',
+                path: 'faculty-data',
+                element: <FacultyData />
+            },
+            {
+                path: 'faculty-data/:facultyId',
+                element: <FacultyDetails />
             },
         ]
     }

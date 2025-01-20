@@ -54,6 +54,7 @@ const CreateStudent = () => {
         value: item._id,
         label: item.name
     }))
+    
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         const studentData = {
             password: "student123",
@@ -165,7 +166,7 @@ const CreateStudent = () => {
                             <PHSelect options={departmentOptions} disabled={dIsloading} name="departmentOptions" label="Admission Department" />
                         </Col>
                     </Row>
-                    <Button htmlType="submit">submit</Button>
+                    <Button size="large" htmlType="submit">Create Student</Button>
                 </PHForm>
             </Col>
         </Row>
